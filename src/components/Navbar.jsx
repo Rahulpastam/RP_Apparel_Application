@@ -11,7 +11,10 @@ import { toast } from "react-toastify";
 const Navbar = () => {
   const { isAuthenticated, user, setUser, setIsAuthenticated } =
     useContext(Context);
+
+    // console.log("from navbar", user.firstName)
     const [show, setShow] = useState(false)
+    const [showLogout, setShowLogout] = useState(false)
     
 
     const handleLogout = async () => {
@@ -21,7 +24,9 @@ const Navbar = () => {
         })
         .then((res) => {
           toast.success(res.data.message);
+          localStorage.removeItem('user');
           setIsAuthenticated(false);
+
         })
         .catch((err) => {
           toast.error(err.response.data.message);
@@ -52,11 +57,21 @@ const Navbar = () => {
               </Link>
             </div>
             {isAuthenticated ? (
-              <button className="logoutBtn btn" onClick={handleLogout}>
+              <>
+              <button className="dropdown" onClick={()=> setShowLogout(!showLogout)}
+                >
+                {user.firstName}
+                <button
+                onClick={handleLogout}
+                className="dropdown-content"
+                             
+              >
                 LOGOUT
               </button>
+              </button>
+              </>
             ) : (
-              <button className="loginBtn btn" onClick={goToLogin}>
+              <button className="" onClick={goToLogin}>
                 LOGIN
               </button>
             )}

@@ -1,4 +1,4 @@
-import { StrictMode, createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 
@@ -8,6 +8,14 @@ const AppWrapper = () => {
   const [user, setUser] = useState({})
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   return(
     <Context.Provider value={{ isAuthenticated, user, setUser, setIsAuthenticated }}>
       <App />
@@ -15,10 +23,8 @@ const AppWrapper = () => {
   )
 }
 
-
-
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <React.StrictMode>
     <AppWrapper />
-  </StrictMode>,
+  </React.StrictMode>,
 )

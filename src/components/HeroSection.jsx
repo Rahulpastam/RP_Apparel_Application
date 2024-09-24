@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const images = [
   "/donate-1.png",
@@ -12,7 +13,7 @@ const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -20,10 +21,9 @@ const HeroSection = () => {
     <section className="hero-section">
     <div className="hero-content">
       <div className="hero-left">
-        <h1 className="hero-title">Welcome to Our Platform</h1>
+        <h1 className="hero-title">Welcome to Our RP Apparels Management</h1>
         <p className="hero-description">
-          We provide top-notch services to cater to all your needs. Experience
-          the best solutions with us, where innovation meets efficiency.
+        Turn Your Old Apparel into a New Opportunity! Easily donate, recycle, or dispose of unused clothes with our hassle-free service. Make a positive impact by giving your wardrobe a second life today!
         </p>
       </div>
       <div className="hero-right">
@@ -44,7 +44,7 @@ const HeroSection = () => {
             ))}
           </div>
         </div>
-        <button className="hero-button">Get Started</button>
+        <Link to={"/actionType"}><button className="hero-button">Get Started </button></Link>
       </div>
     </div>
   </section>

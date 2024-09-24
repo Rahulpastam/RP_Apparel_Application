@@ -2,9 +2,9 @@
 
 const ActionType = () => {
   return (
-    <div>
-      <h1>Action type</h1>
-    </div>
+    <>
+   
+    </>
   )
 }
 
