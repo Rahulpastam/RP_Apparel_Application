@@ -57,7 +57,6 @@ h2 {
 }
 .container {
   padding: 0 100px;
-  overflow-x: hidden;
 }
 @media (max-width: 700px) {
   .container {
@@ -153,7 +152,7 @@ h2 {
   }
 
   .carousel-container {
-    height: 200px;
+    height: 400px;
   }
 
   .hero-button {
@@ -179,148 +178,19 @@ h2 {
 
 /*  */
 
-
-/* footer */
-footer {
-  padding-bottom: 30px !important;
-  font-size: small;
-}
-footer hr {
-  margin-bottom: 30px;
-}
-footer .content {
-  display: flex;
-  /* gap: 20px; */
-}
-footer .content div {
-  flex: 1;
-}
-footer .content div:nth-child(1) {
-  flex: 0.7;
-}
-footer .content div:nth-child(2) {
-  flex: 0.65;
-}
-footer .content div:nth-child(3) {
-  flex: 1.3;
-}
-footer .content div h4 {
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-footer .content div ul {
-  display: flex;
-  flex-direction: column;
-  /* gap: 10px; */
-}
-footer .content div ul a {
-  color: gray;
-  text-decoration: none;
-}
-footer .content div ul a:hover {
-  color: #8570ed;
-  transition: 0.3s;
-}
-footer .content div ul li span {
-  color: gray;
-}
-footer .content div ul li span:first-child {
-  width: 150px;
-  display: inline-block;
-}
-
-footer .content div:last-child div {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-footer .content div:last-child div svg {
-  font-size: 20px;
-}
-@media (max-width: 1135px) {
-  footer .content {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  footer .content div,
-  footer .content div:nth-child(3) {
-    flex: none;
-    width: 340px;
-    margin-bottom: 30px;
-  }
-}
-@media (max-width: 900px) {
-  footer {
-    padding-bottom: 0 !important;
-  }
-  footer .content div,
-  footer .content div:nth-child(3) {
-    width: 100%;
-  }
-}
-@media (max-width: 390px) {
-  footer .content div:nth-child(3) ul li {
-    display: flex;
-    flex-direction: column;
-  }
-  footer .content div:nth-child(3) {
-    flex-wrap: wrap;
-  }
-}
-
-.departments {
-  padding-top: 30px;
-}
-.departments h2 {
-  color: gray;
-  margin-bottom: 30px;
-}
-.card {
-  position: relative;
-  border-radius: 8px;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  padding-right: 20px;
-  min-height: 360px;
-  margin: 0 10px;
-  text-decoration: none;
-}
-.card img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  top: 0;
-  left: 0;
-}
-.card .depart-name {
-  margin-bottom: 30px;
-  background: #e5e5e5;
-  width: 320px;
-  font-size: 24px;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  padding: 12px;
-  border-radius: 30px;
-  left: 0;
-  height: fit-content;
-  font-weight: 700;
-}
-
 /*navbar*/
 nav {
   display: flex;
-  margin: -20px auto;
+  width: 100%;
+  margin: 0 auto;
   justify-content: space-between;
   position: absolute;
   align-items: center;
-  /* z-index: 2; */
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  padding-top: 4px;
+  padding-bottom: 20px;
+  z-index: 2;
 }
 nav .logo {
   flex: 1;
@@ -353,10 +223,21 @@ nav .navLinks .links a:hover {
   cursor: pointer;
 }
 nav .btn {
-  padding: 10px 15px;
+  padding: 8px 20px;
+  color: #e5e5e5;
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 600;
   z-index: 2;
 }
-
+nav .logoutBtn {
+  background: linear-gradient(135deg, black, rgb(49, 49, 49));
+}
+nav .loginBtn {
+  background: linear-gradient(135deg, black, rgb(49, 49, 49));
+}
 nav .hamburger {
   display: none;
 }
@@ -421,6 +302,9 @@ nav svg {
   nav .navLinks .links a {
     font-weight: 700;
   }
+  nav .logoutBtn {
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -446,6 +330,26 @@ nav svg {
 }
 footer .logo-img {
   width: 100%;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  font-weight: 200;
+  display: none;
+  position: absolute;
+  margin-top: 16px;
+  padding: 10px 13px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  left: -1px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* login and signup */
@@ -547,25 +451,6 @@ form {
   }
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  font-weight: 200;
-  display: none;
-  position: absolute;
-  margin-top: 18px;
-  padding: 10px 13px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  left: -1px;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 
 
 /*  signup*/
@@ -624,4 +509,14 @@ form {
   .signup-form button {
     grid-column: 1;
   }
+}
+
+/* actionType */
+
+.actions{
+  display: flex;
+  flex-direction: row;
+  flex: 1 ;
+  justify-content: space-between;
+  margin-top: 50px;
 }
