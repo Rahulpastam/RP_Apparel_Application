@@ -1,37 +1,57 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import ActionType from "./pages/ActionType";
 import Apparel from "./pages/Apparel";
-import Confirmation from "./pages/Confirmation";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Context } from "./main";
+import axios from "axios";
 
 const App = () => {
+  const { setUser, setIsAuthenticated } = useContext(Context);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/user/me", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setUser(response.data.user);
+        setIsAuthenticated(true);
+      })
+      .catch((error) => {
+        setIsAuthenticated(false);
+        console.log(error);
+      });
+  }, [setUser, setIsAuthenticated]);
   return (
     <>
       <Router>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/actionType" element={<ActionType />} />
           <Route path="/apparel" element={<Apparel />} />
-          <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
         <ToastContainer
           position="top-right"
-          autoClose={5000} 
-          hideProgressBar={false}
-          newestOnTop={false}
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={true}
           closeOnClick
           rtl={false}
           pauseOnFocusLoss

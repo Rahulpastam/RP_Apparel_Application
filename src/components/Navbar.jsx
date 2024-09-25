@@ -1,87 +1,75 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { useContext } from "react";
-import { Context } from "../main";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Context } from "../main";
 
 const Navbar = () => {
-  const { isAuthenticated, user, setUser, setIsAuthenticated } =
-    useContext(Context);
+  const [show, setShow] = useState(false);
+  const { user, isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const navigateTo = useNavigate();
 
-    // console.log("from navbar", user.firstName)
-    const [show, setShow] = useState(false)
-    const [showLogout, setShowLogout] = useState(false)
-    
+  const handleLogout = async () => {
+    navigateTo("/login");
+    setShow(false);
+    await axios
+      .get("http://localhost:4000/api/user/logout", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        toast.success(res.data.message);
+        setIsAuthenticated(false);
+        navigateTo("/login");
+        // localStorage.removeItem("user");
+        // console.log("token removed")
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
 
-    const handleLogout = async () => {
-      await axios
-        .get("http://localhost:4000/api/user/logout", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          toast.success(res.data.message);
-          localStorage.removeItem('user');
-          setIsAuthenticated(false);
+  const goToLogin = () => {
+    navigateTo("/login");
+  };
 
-        })
-        .catch((err) => {
-          toast.error(err.response.data.message);
-        });
-    };
-    const navigate = useNavigate();
-    const goToLogin = () => {
-      navigate("/login")
-    }
-    return (
-      <>
-        <nav className={"container"}>
-          <div className="logo">
-            <Link to={"/"}>
-              <img src="/logo.png" alt="logo" className="logo-img" />{" "}
+  return (
+    <>
+      <nav className={"container"}>
+        <div className="logo">
+          <Link to={"/"}>
+            <img src="/logo.png" alt="logo" className="logo-img" />{" "}
+          </Link>
+        </div>
+        <div className={show ? "navLinks showmenu" : "navLinks"}>
+          <div className="links">
+            <Link to={"/"} onClick={() => setShow(false)}>
+              <h6>Home</h6>
+            </Link>
+            <Link to={"/contact"} onClick={() => setShow(false)}>
+              <h6>Contact</h6>
+            </Link>
+            <Link to={"/about"} onClick={() => setShow(false)}>
+              <h6>About</h6>
             </Link>
           </div>
-          <div className={show ? "navLinks showmenu" : "navLinks"}>
-            <div className="links">
-              <Link to={"/"} onClick={() => setShow(!show)}>
-                Home
-              </Link>
-              <Link to={"/"} onClick={() => setShow(!show)}>
-                Contact
-              </Link>
-              <Link to={"/"} onClick={() => setShow(!show)}>
-                About
-              </Link>
-            </div>
+          <div className="usr-lgn-btn">
             {isAuthenticated ? (
               <>
-              <button className="dropdown" onClick={()=> setShowLogout(!showLogout)}
-                >
-                {user.firstName}
-                <button
-                onClick={handleLogout}
-                className="dropdown-content"
-                             
-              >
-                LOGOUT
-              </button>
-              </button>
+                <button>{user.firstName}</button>
+                <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
-              <button className="" onClick={goToLogin}>
-                LOGIN
-              </button>
+              <button onClick={goToLogin}>LOGIN</button>
             )}
           </div>
-          <div className="hamburger" onClick={() => setShow(!show)}>
-            <GiHamburgerMenu />
-          </div>
-        </nav>
-      </>
-    );
+        </div>
+        <div className="hamburger" onClick={() => setShow(!show)}>
+          <GiHamburgerMenu />
+        </div>
+      </nav>
+    </>
+  );
 };
 
 export default Navbar;

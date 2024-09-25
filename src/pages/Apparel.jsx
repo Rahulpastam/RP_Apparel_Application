@@ -1,12 +1,11 @@
 // import React from 'react'
-
+import ApparelAddForm from "../components/ApparelAddForm";
 const Apparel = () => {
   return (
     <div>
-      <h1>Add apparel list</h1>
+      <ApparelAddForm />
     </div>
-  )
-}
+  );
+};
 
-export default Apparel
-
+export default Apparel;

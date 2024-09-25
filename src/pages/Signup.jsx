@@ -20,9 +20,9 @@ const Signup = () => {
   const [city, setCity] = useState("");
   const [pincode, setPincode] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handleSignup =async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     try {
       await axios
@@ -47,13 +47,13 @@ const Signup = () => {
         )
         .then((res) => {
           toast.success(res.data.message);
+          navigate("/login");
           setIsAuthenticated(true);
-          navigate("/");
           setFirstName("");
           setLastName("");
           setEmail("");
           setPhone("");
-          setHouseNo("")
+          setHouseNo("");
           setStreet("");
           setCity("");
           setPincode("");
@@ -74,62 +74,84 @@ const Signup = () => {
             <div>
               {" "}
               <label>First Name</label>
-              <input 
-              type="text" 
-              placeholder="Enter your first name" 
-              value={firstName}
-              onChange={(e)=> setFirstName(e.target.value)}/>
+              <input
+                type="text"
+                placeholder="Enter your first name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
             </div>
             <div>
               <label>Last Name</label>
-              <input type="text" placeholder="Enter your last name"
-              value={lastName}
-              onChange={(e)=> setLastName(e.target.value)} />
+              <input
+                type="text"
+                placeholder="Enter your last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
             </div>
           </div>
 
           <div className="form-group form-row  signup-form ">
             <div>
               <label>Email</label>
-              <input type="email" placeholder="Enter your email" 
-              value={email}
-              onChange={(e)=> setEmail(e.target.value)}/>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div>
               <label>Phone</label>
-              <input type="text" placeholder="Enter your phone number"
-              value={phone}
-              onChange={(e)=> setPhone(e.target.value)} />
+              <input
+                type="text"
+                placeholder="Enter your phone number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
             </div>
           </div>
 
           <div className="form-group form-row  signup-form ">
             <div>
               <label>House-No</label>
-              <input type="text" placeholder="H-No..,"
-              value={houseNo}
-              onChange={(e)=> setHouseNo(e.target.value)} />
+              <input
+                type="text"
+                placeholder="H-No..,"
+                value={houseNo}
+                onChange={(e) => setHouseNo(e.target.value)}
+              />
             </div>
             <div>
               <label>Street</label>
-              <input type="text" placeholder="street"
-              value={street}
-              onChange={(e)=> setStreet(e.target.value)} />
+              <input
+                type="text"
+                placeholder="street"
+                value={street}
+                onChange={(e) => setStreet(e.target.value)}
+              />
             </div>
           </div>
 
           <div className="form-group form-row  signup-form ">
             <div>
               <label>City</label>
-              <input type="text" placeholder="city" 
-              value={city}
-              onChange={(e)=> setCity(e.target.value)}/>
+              <input
+                type="text"
+                placeholder="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
             </div>
             <div>
               <label>Pincode</label>
-              <input type="text" placeholder="pincode"
-              value={pincode}
-              onChange={(e)=> setPincode(e.target.value)} />
+              <input
+                type="text"
+                placeholder="pincode"
+                value={pincode}
+                onChange={(e) => setPincode(e.target.value)}
+              />
             </div>
           </div>
 
@@ -137,19 +159,32 @@ const Signup = () => {
             <div>
               {" "}
               <label>Password</label>
-              <input type="password" placeholder="Password"
-              value={password}
-              onChange={(e)=> setPassword(e.target.value)} />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div>
               <label>Confirm Password</label>
-              <input type="password" placeholder="Confirm password" 
-              value={confirmPassword}
-              onChange={(e)=> setConfirmPassword(e.target.value)}/>
+              <input
+                type="password"
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
             </div>
           </div>
-
-          <button type="submit">Sign Up</button>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <button type="submit">Sign Up</button>
+          </div>
         </form>
         <p className="auth-footer">
           Already have an account?
@@ -158,7 +193,6 @@ const Signup = () => {
       </div>
     </div>
   );
-  
-  };
+};
 
 export default Signup;

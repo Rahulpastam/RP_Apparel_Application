@@ -6,10 +6,8 @@ import { Context } from "../main";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
 const Login = () => {
-  const { setUser, setIsAuthenticated } =
-    useContext(Context);
+  const { setUser, setIsAuthenticated } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -28,15 +26,9 @@ const Login = () => {
           }
         )
         .then((res) => {
-          // console.log(res.data);
-          setIsAuthenticated(true);
-          setUser(res.data.user);
-          // console.log("from login",res.data.user.firstName)
           if (res.data.success) {
-            // Save user data to local storage
-            localStorage.setItem('user', JSON.stringify(res.data.user));
-            setUser(res.data.user); // Assuming you have a setUser function in context
-            setIsAuthenticated(true); // Set authenticated state
+            setUser(res.data.user);
+            setIsAuthenticated(true);
           }
           navigate("/");
           toast.success(res.data.message);
@@ -44,7 +36,6 @@ const Login = () => {
           setPassword("");
         });
     } catch (error) {
-      // console.log(error.response.data)
       toast.error(error.response.data.message);
     }
   };
@@ -55,25 +46,35 @@ const Login = () => {
         <h1>Login</h1>
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label>user1@gmail.com</label>
-            <input 
-            type="text" 
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} />
+            <label>Registered Email</label>
+            <input
+              type="text"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input 
-            type="password" 
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}  />
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <button type="submit">Login</button>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <button type="submit">Login</button>
+          </div>
         </form>
         <p className="auth-footer">
-          Do not have an account? <Link to={"/signup"}> Signup here</Link>
+          Do not have an account? <Link to={"/signup"}> Signup</Link>
         </p>
       </div>
     </div>
