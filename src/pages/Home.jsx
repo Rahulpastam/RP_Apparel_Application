@@ -1,13 +1,22 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../main";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 
 const Hero = () => {
   const navigate = useNavigate();
 
-  const { setLabel } = useContext(Context);
+  const { isAuthenticated, setLabel } = useContext(Context);
+
+  const handleHomeBtn =(label) =>{
+    if(isAuthenticated){
+      setLabel(label);  
+      navigate(`/${label.toLowerCase()}`);
+    }
+  }
 
   return (
     <>
@@ -54,8 +63,7 @@ const Hero = () => {
           <button
             className="home-btn"
             onClick={() => {
-              navigate("/apparel");
-              setLabel("Donation");
+              handleHomeBtn("Donate")
             }}
           >
             Donate
@@ -75,8 +83,7 @@ const Hero = () => {
           <button
             className="home-btn"
             onClick={() => {
-              navigate("/apparel");
-              setLabel("Recycle");
+              handleHomeBtn("Recycle")
             }}
           >
             Recycle
@@ -109,8 +116,7 @@ const Hero = () => {
           <button
             className="home-btn"
             onClick={() => {
-              navigate("/apparel");
-              setLabel("Dispose");
+              handleHomeBtn("Dispose")
             }}
           >
             Dispose
