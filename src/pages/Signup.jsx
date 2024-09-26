@@ -27,7 +27,7 @@ const Signup = () => {
     try {
       await axios
         .post(
-          "http://localhost:4000/api/user/register",
+          "https://rp-apparel-backend-1.onrender.com/api/user/register",
           {
             firstName,
             lastName,
