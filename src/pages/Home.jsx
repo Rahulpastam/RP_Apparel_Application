@@ -14,7 +14,7 @@ const Hero = () => {
   const handleHomeBtn =(label) =>{
     if(isAuthenticated){
       setLabel(label);  
-      navigate(`/${label.toLowerCase()}`);
+      navigate("/apparel");
     }
   }
 
