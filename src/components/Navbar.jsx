@@ -7,7 +7,7 @@ import { Context } from "../main";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const { user, isAuthenticated, setIsAuthenticated } = useContext(Context);
   const navigateTo = useNavigate();
 
   const handleLogout = async () => {
@@ -19,7 +19,6 @@ const Navbar = () => {
       })
       .then((res) => {
         toast.success(res.data.message);
-        setUser({})
         setIsAuthenticated(false);
         navigateTo("/login");
         // localStorage.removeItem("user");
