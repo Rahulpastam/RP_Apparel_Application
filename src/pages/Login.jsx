@@ -26,6 +26,7 @@ const Login = () => {
           }
         )
         .then((res) => {
+          console.log(res.data);
           if (res.data.success) {
             setUser(res.data.user);
             setIsAuthenticated(true);
