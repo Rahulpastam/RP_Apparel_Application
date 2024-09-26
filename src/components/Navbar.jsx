@@ -18,11 +18,13 @@ const Navbar = () => {
         withCredentials: true,
       })
       .then((res) => {
-        toast.success(res.data.message);
-        setIsAuthenticated(false);
-        navigateTo("/login");
-        // localStorage.removeItem("user");
+        if(res.data.message){
+          toast.success(res.data.message);
+          setIsAuthenticated(false);
+          navigateTo("/login");
+          // localStorage.removeItem("user");
         // console.log("token removed")
+        }
       })
       .catch((err) => {
         toast.error(err.response.data.message);
