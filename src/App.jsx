@@ -21,7 +21,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("https://rp-apparel-backend-1.onrender.com/api/user/me", {
+      .get("http://localhost:5000/api/user/me", {
         withCredentials: true,
       })
       .then((response) => {
