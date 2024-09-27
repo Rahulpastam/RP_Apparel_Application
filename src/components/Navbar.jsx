@@ -7,7 +7,7 @@ import { Context } from "../main";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const { user, setUser, isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const { user, isAuthenticated, setIsAuthenticated } = useContext(Context);
   const navigateTo = useNavigate();
 
   const handleLogout = async () => {
@@ -18,12 +18,13 @@ const Navbar = () => {
         withCredentials: true,
       })
       .then((res) => {
-        toast.success(res.data.message);
-        setUser({})
-        setIsAuthenticated(false);
-        navigateTo("/login");
-        // localStorage.removeItem("user");
+        if(res.data.message){
+          toast.success(res.data.message);
+          setIsAuthenticated(false);
+          navigateTo("/login");
+          // localStorage.removeItem("user");
         // console.log("token removed")
+        }
       })
       .catch((err) => {
         toast.error(err.response.data.message);
