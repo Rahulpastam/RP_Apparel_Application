@@ -18,7 +18,7 @@ const Login = () => {
     try {
       await axios
         .post(
-          "https://rp-apparel-backend-1.onrender.com/api/user/login",
+          "https://rp-apparel-backend.onrender.com/api/user/login",
           { email, password },
           {
             withCredentials: true,
