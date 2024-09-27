@@ -47,7 +47,7 @@ const Signup = () => {
         )
         .then((res) => {
           toast.success(res.data.message);
-          navigate("/login");
+          navigate("/");
           setIsAuthenticated(true);
           setFirstName("");
           setLastName("");

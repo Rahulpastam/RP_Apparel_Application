@@ -21,8 +21,8 @@ const ApparelAddForm = () => {
     setStreet(user.street);
     setCity(user.city);
     setPincode(user.pincode);
-    setLable_(label);
-  }, [user, isAuthenticated, label]);
+    // setLable_(label);
+  }, [user, isAuthenticated]);
 
   const updateAddress = () => {
     // console.log(user);
