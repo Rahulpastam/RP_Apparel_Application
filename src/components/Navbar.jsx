@@ -14,7 +14,7 @@ const Navbar = () => {
     navigateTo("/login");
     setShow(false);
     await axios
-      .get("http://localhost:5000/api/user/logout", {
+      .get("https://rp-apparel-backend-1.onrender.com/api/user/logout", {
         withCredentials: true,
       })
       .then((res) => {
