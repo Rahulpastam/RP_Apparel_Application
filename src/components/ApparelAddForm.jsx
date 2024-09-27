@@ -29,7 +29,7 @@ const ApparelAddForm = () => {
     try {
       axios
         .put(
-          `https://rp-apparel-backend-1.onrender.com/api/user/updateAddress/${user._id}`,
+          `http://localhost:5000/api/user/updateAddress/${user._id}`,
           {
             houseNo,
             street,
@@ -57,7 +57,7 @@ const ApparelAddForm = () => {
     try {
       await axios
         .post(
-          `https://rp-apparel-backend-1.onrender.com/api/apparel/${label.toLowerCase()}`,
+          `http://localhost:5000/api/apparel/${label.toLowerCase()}`,
           {
             itemName,
             catogory,
