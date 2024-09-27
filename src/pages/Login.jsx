@@ -18,7 +18,7 @@ const Login = () => {
     try {
       await axios
         .post(
-          "https://rp-apparel-backend-1.onrender.com/api/user/login",
+          "http://localhost:4000/api/user/login",
           { email, password },
           {
             withCredentials: true,
@@ -26,7 +26,7 @@ const Login = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setUser(res.data.user);
           setIsAuthenticated(true);
           navigate("/");

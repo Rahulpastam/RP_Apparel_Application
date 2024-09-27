@@ -21,7 +21,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("https://rp-apparel-backend-1.onrender.com/api/user/me", {
+      .get("http://localhost:4000/api/user/me", {
         withCredentials: true,
       })
       .then((response) => {
@@ -30,7 +30,7 @@ const App = () => {
       })
       .catch((error) => {
         setIsAuthenticated(false);
-        console.log(error);
+        // console.log(error);
       });
   }, [setUser, setIsAuthenticated]);
   return (

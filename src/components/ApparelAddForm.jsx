@@ -24,13 +24,12 @@ const ApparelAddForm = () => {
     setLable_(label);
   }, [user, isAuthenticated, label]);
 
-  // console.log(label.toLowerCase())
   const updateAddress = () => {
-    console.log(user);
+    // console.log(user);
     try {
       axios
         .put(
-          `https://rp-apparel-backend-1.onrender.com/api/user/updateAddress/${user._id}`,
+          `http://localhost:4000/api/user/updateAddress/${user._id}`,
           {
             houseNo,
             street,
@@ -58,7 +57,7 @@ const ApparelAddForm = () => {
     try {
       await axios
         .post(
-          `https://rp-apparel-backend-1.onrender.com/api/apparel/${label.toLowerCase()}`,
+          `http://localhost:4000/api/apparel/${label.toLowerCase()}`,
           {
             itemName,
             catogory,
