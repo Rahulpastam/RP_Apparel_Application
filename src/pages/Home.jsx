@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../main";
@@ -15,6 +14,9 @@ const Hero = () => {
     if(isAuthenticated){
       setLabel(label);  
       navigate("/apparel");
+    }else{
+      toast.error("Please login to continue")
+      navigate("/login")
     }
   }
 

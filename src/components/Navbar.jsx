@@ -32,7 +32,9 @@ const Navbar = () => {
   };
 
   const goToLogin = () => {
+    setShow(false)
     navigateTo("/login");
+
   };
 
   return (

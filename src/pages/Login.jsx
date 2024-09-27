@@ -26,7 +26,7 @@ const Login = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setUser(res.data.user);
           setIsAuthenticated(true);
           navigate("/");

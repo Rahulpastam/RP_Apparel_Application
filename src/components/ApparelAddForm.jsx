@@ -21,12 +21,11 @@ const ApparelAddForm = () => {
     setStreet(user.street);
     setCity(user.city);
     setPincode(user.pincode);
-    setLable_(label);
-  }, [user, isAuthenticated, label]);
+    // setLable_(label);
+  }, [user, isAuthenticated]);
 
-  // console.log(label.toLowerCase())
   const updateAddress = () => {
-    console.log(user);
+    // console.log(user);
     try {
       axios
         .put(
