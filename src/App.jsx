@@ -21,7 +21,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/user/me", {
+      .get("http://localhost:5000/api/user/me", {
         withCredentials: true,
       })
       .then((response) => {

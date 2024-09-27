@@ -18,7 +18,7 @@ const Login = () => {
     try {
       await axios
         .post(
-          "http://localhost:4000/api/user/login",
+          "http://localhost:5000/api/user/login",
           { email, password },
           {
             withCredentials: true,

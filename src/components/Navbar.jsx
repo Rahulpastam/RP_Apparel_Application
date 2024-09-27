@@ -14,7 +14,7 @@ const Navbar = () => {
     navigateTo("/login");
     setShow(false);
     await axios
-      .get("http://localhost:4000/api/user/logout", {
+      .get("http://localhost:5000/api/user/logout", {
         withCredentials: true,
       })
       .then((res) => {

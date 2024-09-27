@@ -15,6 +15,9 @@ const Hero = () => {
     if(isAuthenticated){
       setLabel(label);  
       navigate("/apparel");
+    }else{
+      toast.error("Please login to continue")
+      navigate("/login")
     }
   }
 

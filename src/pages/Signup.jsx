@@ -27,7 +27,7 @@ const Signup = () => {
     try {
       await axios
         .post(
-          "http://localhost:4000/api/user/register",
+          "http://localhost:5000/api/user/register",
           {
             firstName,
             lastName,
