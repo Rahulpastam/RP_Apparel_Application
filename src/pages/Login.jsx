@@ -7,10 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { setUser, setIsAuthenticated } = useContext(Context);
+  const { setUser, setIsAuthenticated, toke, setToke } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,6 +39,8 @@ const Login = () => {
           // console.log(res.data);
           setUser(res.data.user);
           setIsAuthenticated(true);
+          setToke(res.data.token)
+          setCookie("userToken", res.data.token, 7);
           navigate("/");
           toast.success(res.data.message);
           setEmail("");

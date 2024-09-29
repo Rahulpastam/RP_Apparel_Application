@@ -8,6 +8,7 @@ const AppWrapper = () => {
   const [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [label, setLabel] = useState("");
+  const [toke, setToke] = useState("")
 
   return (
     <Context.Provider
@@ -18,6 +19,8 @@ const AppWrapper = () => {
         setIsAuthenticated,
         label,
         setLabel,
+        toke, 
+        setToke
       }}
     >
       <App />

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -10,25 +11,16 @@ const Navbar = () => {
   const { user, isAuthenticated, setIsAuthenticated } = useContext(Context);
   const navigateTo = useNavigate();
 
-  const handleLogout = async () => {
+  function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=None;';
+    setIsAuthenticated(false);
     navigateTo("/login");
+    toast.success("User Loggedout successfully");
+  }
+
+  const handleLogout = async () => {
     setShow(false);
-    await axios
-      .get("http://localhost:5000/api/user/logout", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        if(res.data.message){
-          toast.success(res.data.message);
-          setIsAuthenticated(false);
-          navigateTo("/login");
-          // localStorage.removeItem("user");
-        // console.log("token removed")
-        }
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
+    deleteCookie("userToken")
   };
 
   const goToLogin = () => {
