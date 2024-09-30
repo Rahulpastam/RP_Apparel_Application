@@ -19,20 +19,21 @@ import axios from "axios";
 const App = () => {
   const { setUser, setIsAuthenticated } = useContext(Context);
 
-  useEffect(() => {
-    axios
-      .get("https://rp-apparel-backend-1.onrender.com/api/user/me", {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setUser(response.data.user);
-        setIsAuthenticated(true);
-      })
-      .catch((error) => {
-        setIsAuthenticated(false);
-        // console.log(error);
-      });
-  }, [setUser, setIsAuthenticated]);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://rp-apparel-backend-1.onrender.com/api/user/me", {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       setUser(response.data.user);
+  //       setIsAuthenticated(true);
+  //     })
+  //     .catch((error) => {
+  //       setIsAuthenticated(false);
+  //       // console.log(error);
+  //     });
+  // }, [setUser, setIsAuthenticated]);
+
   return (
     <>
       <Router>

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../main";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie"
 
 const ApparelAddForm = () => {
   const { user, isAuthenticated, label } = useContext(Context);
@@ -25,30 +26,36 @@ const ApparelAddForm = () => {
   }, [user, isAuthenticated]);
 
   const updateAddress = () => {
-    // console.log(user);
-    try {
-      axios
-        .put(
-          `https://rp-apparel-backend-1.onrender.com/api/user/updateAddress/${user._id}`,
-          {
-            houseNo,
-            street,
-            city,
-            pincode,
-          },
-          {
-            withCredentials: true,
-            headers: {
-              "Content-Type": "application/json",
+    const token = Cookies.get("userToken");
+    if(!token){
+      toast.error("Please login to update address");
+    }else{
+      try {
+        axios
+          .put(
+            `https://rp-apparel-backend-1.onrender.com/api/user/updateAddress/${user._id}`,
+            {
+              houseNo,
+              street,
+              city,
+              pincode,
             },
-          }
-        )
-        .then((response) => {
-          toast.success(response.data.message);
-        });
-    } catch (error) {
-      toast.error(error.response?.data?.message);
+            {
+              withCredentials: true,
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((response) => {
+            toast.success(response.data.message);
+          });
+      } catch (error) {
+        toast.error(error.response?.data?.message);
+      }
     }
+    // console.log(user);
+    
   };
 
   const handleSubmit = async (e) => {
